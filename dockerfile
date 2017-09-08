@@ -8,9 +8,9 @@ ENV PATH /bin:/sbin:$ANACONDA_INSTALL_DIR/anaconda/bin:/usr/bin
 
 ENV PASSWORD 'coolyaolei'
 
-# Change mirror site to China
-RUN echo 'https://mirror.tuna.tsinghua.edu.cn/alpine/v3.6/main' > /etc/apk/repositories && \
-     echo 'https://mirror.tuna.tsinghua.edu.cn/alpine/v3.6/community' >> /etc/apk/repositories
+# Change mirror site For China
+# RUN echo 'https://mirror.tuna.tsinghua.edu.cn/alpine/v3.6/main' > /etc/apk/repositories && \
+#     echo 'https://mirror.tuna.tsinghua.edu.cn/alpine/v3.6/community' >> /etc/apk/repositories
 
 # We need to install openssl so that wget can fetch from HTTPS
 RUN apk update && \
@@ -18,7 +18,9 @@ RUN apk update && \
 
 RUN apk add --no-cache tini
 
-RUN wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/$ANACONDA_INSTALL_SH
+RUN wget https://repo.continuum.io/archive/$ANACONDA_INSTALL_SH
+# China mirror site
+# RUN wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/archive/$ANACONDA_INSTALL_SH
 
 RUN apk add --no-cache bash libstdc++
 
